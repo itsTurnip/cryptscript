@@ -14,11 +14,11 @@ class wheat():
 		k1 - первая часть ключа, используется в первой таблице
 		k2 - вторая часть ключа, используется во второй таблице
 		"""
-		self.k1, self.k2 = map(self.replace, [k1, k2])
+		k1, k2 = map(self.replace, [k1, k2])
 		if self.check_bad_lang(k1, k2): 
 			print("Должны использоваться исключительно русские символы!")
 			return
-		self.k1, self.k2 = self.edit_keys(k1), self.edit_keys(k2)
+		k1, k2 = self.edit_keys(k1), self.edit_keys(k2)
 		self.alph1, self.alph2 = self.make_alph(k1), self.make_alph(k2)
 		
 	def replace(self, x):
@@ -45,7 +45,7 @@ class wheat():
 			for sym in x:
 				if not sym in self.alphabet:
 					return True
-			return False
+		return False
 			
 	def edit_keys(self, key):
 		"""
@@ -57,7 +57,7 @@ class wheat():
 		"""
 		newkey = ""
 		for sym in key:
-			if not sym in key:
+			if not sym in newkey:
 				newkey += sym
 		return newkey
 	
