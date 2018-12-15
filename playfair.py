@@ -18,11 +18,11 @@ class playfair(table):
 
     def crypt_b(self, bigr: str) -> str:
         """
-		Функция шифрования биграмм
+        Функция шифрования биграмм
 
-		:param bigr: Шифруемая биграмма
-		:returns: Зашифрованная биграмма
-		"""
+        :param bigr: Шифруемая биграмма
+        :returns: Зашифрованная биграмма
+        """
         nums = []
         nums.append([self.alph.index(bigr[0]) // 5, self.alph.index(bigr[0]) % 5])
         nums.append([self.alph.index(bigr[1]) // 5, self.alph.index(bigr[1]) % 5])
@@ -46,11 +46,11 @@ class playfair(table):
     
     def decrypt_b(self, bigr: str) -> str:
         """
-		Функция расшифрования биграмм
+        Функция расшифрования биграмм
 
-		:param bigr: Расшифруемая биграмма
-		:returns: Расшифрованная биграмма
-		"""
+        :param bigr: Расшифруемая биграмма
+        :returns: Расшифрованная биграмма
+        """
         nums = []
         nums.append([self.alph.index(bigr[0]) // 5, self.alph.index(bigr[0]) % 5])
         nums.append([self.alph.index(bigr[1]) // 5, self.alph.index(bigr[1]) % 5])
@@ -73,21 +73,21 @@ class playfair(table):
         return bigr
 
     def crypt(self, text: str) -> str:
-    	"""
-		Функция шифрования текста
+        """
+        Функция шифрования текста
 
-		:param text: Шифруемый текст
-		:returns: Зашифрованный текст
-		"""
-    	text = self.replace(text)
-    	if self.check_bad_lang(text):
-    		print("Допускается использовать только русский алфавит!")
-    		return
-    	if len(text) % 2 == 1: text += "ь"
-    	ctext = ""
-    	while len(ctext) < len(text):
-    		ctext += self.crypt_b(text[len(ctext)] + text[len(ctext) + 1])
-    	return ctext
+        :param text: Шифруемый текст
+        :returns: Зашифрованный текст
+        """
+        text = self.replace(text)
+        if self.check_bad_lang(text):
+            print("Допускается использовать только русский алфавит!")
+            return
+        if len(text) % 2 == 1: text += "ь"
+        ctext = ""
+        while len(ctext) < len(text):
+            ctext += self.crypt_b(text[len(ctext)] + text[len(ctext) + 1])
+        return ctext
     
     def decrypt(self, text: str) -> str:
         """
