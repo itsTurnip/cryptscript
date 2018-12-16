@@ -1,6 +1,7 @@
-from table import table
+from table import Table
 
-class wheat(table):
+
+class Wheat(Table):
     """
     Классовая реализация шифра Уитстона (шифр двойного квадрата)
 
@@ -23,9 +24,9 @@ class wheat(table):
         :param bigr: шифруемая биграмма
         :returns: зашифрованная биграмма
         """
-        nums = [] # Массив для хранения номеров строк и столбцов символов биграммы в таблице закрытых алфавитов
-        nums.append([self.alph1.index(bigr[0]) // 5, self.alph1.index(bigr[0]) % 5])
-        nums.append([self.alph2.index(bigr[1]) // 5, self.alph2.index(bigr[1]) % 5])
+        nums = [[self.alph1.index(bigr[0]) // 5, self.alph1.index(bigr[0]) % 5],
+                [self.alph2.index(bigr[1]) // 5, self.alph2.index(bigr[1]) % 5]]
+        """Массив для хранения строк и столбцов символов биграммы"""
         # Проверяем, совпадают ли столбцы
         if nums[0][1] == nums[1][1]:
             # Если да, меняем строки
@@ -41,7 +42,7 @@ class wheat(table):
         bigr = "".join([self.alph1[nums[0][0] * 5 + nums[0][1]], self.alph2[nums[1][0] * 5 + nums[1][1]]])
         return bigr
 
-    def crypt(self, text) -> str:
+    def crypt(self, text: str) -> str:
         """
         Функция шифрования (расшифрования) текста
 

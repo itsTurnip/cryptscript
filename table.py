@@ -1,4 +1,4 @@
-class table():
+class Table:
     """
     Общий класс для квадратных шифров.
     Некоторые особенности: 
@@ -9,10 +9,10 @@ class table():
 
     alphabet = "абвгдежзиклмнопрстуфхцчшщыьэюя"
     """Алфавит открытого текста"""
-    
-    def replace(self, x: str) -> str:
+    @staticmethod
+    def replace(x: str) -> str:
         """
-	    Функция замены измененных в алфавите символов
+        Функция замены измененных в алфавите символов
 
         :param x: Строка, в которой заменяем символы
         :returns: Измененная строка.
@@ -30,11 +30,12 @@ class table():
         """
         for x in args:
             for sym in x:
-                if not sym in self.alphabet:
+                if sym not in self.alphabet:
                     return True
         return False
-		
-    def edit_key(self, key: str) -> str:
+
+    @staticmethod
+    def edit_key(key: str) -> str:
         """
         Изменяем ключи, исключая повторяющиеся символы
 
@@ -43,10 +44,10 @@ class table():
         """
         newkey = ""
         for sym in key:
-            if not sym in newkey:
+            if sym not in newkey:
                 newkey += sym
         return newkey
-	
+
     def make_alph(self, key: str) -> str:
         """
         Функция создания закрытого алфавита
@@ -56,6 +57,6 @@ class table():
         """
         alph = key
         for sym in self.alphabet:
-            if not sym in alph:
+            if sym not in alph:
                 alph += sym
         return alph

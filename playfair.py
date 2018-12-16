@@ -1,6 +1,7 @@
-from table import table
+from table import Table
 
-class playfair(table):
+
+class Playfair(Table):
     """
     Классовая реализация шифра Плейфера
 
@@ -23,9 +24,9 @@ class playfair(table):
         :param bigr: Шифруемая биграмма
         :returns: Зашифрованная биграмма
         """
-        nums = []
-        nums.append([self.alph.index(bigr[0]) // 5, self.alph.index(bigr[0]) % 5])
-        nums.append([self.alph.index(bigr[1]) // 5, self.alph.index(bigr[1]) % 5])
+        nums = [[self.alph.index(bigr[0]) // 5, self.alph.index(bigr[0]) % 5],
+                [self.alph.index(bigr[1]) // 5, self.alph.index(bigr[1]) % 5]]
+        """Массив для хранения строк и столбцов символов биграммы"""
         if nums[0][0] == nums[1][0]:
             # Проверяем, совпадают ли строки
             # Если да, то прибавляем к столбцу единицу
@@ -51,9 +52,8 @@ class playfair(table):
         :param bigr: Расшифруемая биграмма
         :returns: Расшифрованная биграмма
         """
-        nums = []
-        nums.append([self.alph.index(bigr[0]) // 5, self.alph.index(bigr[0]) % 5])
-        nums.append([self.alph.index(bigr[1]) // 5, self.alph.index(bigr[1]) % 5])
+        nums = [[self.alph.index(bigr[0]) // 5, self.alph.index(bigr[0]) % 5],
+                [self.alph.index(bigr[1]) // 5, self.alph.index(bigr[1]) % 5]]
         if nums[0][0] == nums[1][0]:
             # Проверяем, совпадают ли строки
             # Если да, то отнимаем от столбца единицу
