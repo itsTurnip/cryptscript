@@ -10,7 +10,7 @@ class Wheat(Table):
     """
     def __init__(self, k1: str, k2: str):
         k1, k2 = map(self.replace, [k1, k2])
-        if self.check_bad_lang(k1, k2): 
+        if self.check_bad_lang(k1, k2):
             print("Должны использоваться исключительно русские символы!")
             del self
             return
@@ -53,7 +53,8 @@ class Wheat(Table):
         if self.check_bad_lang(text):
             print("Допускается использовать только русский алфавит!")
             return
-        if len(text) % 2 == 1: text += "ь"
+        if len(text) % 2 == 1:
+            text += "ь"
         ctext = ""
         while len(ctext) < len(text):
             ctext += self.crypt_b(text[len(ctext)] + text[len(ctext) + 1])

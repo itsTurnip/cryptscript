@@ -16,10 +16,10 @@ class Table:
 
         :param x: Строка, в которой заменяем символы
         :returns: Измененная строка.
-        TODO:
-        * Избавиться от кучи replace
         """
-        return x.lower().replace(" ", "").replace("ё", "е").replace("й", "и").replace("ъ", "ь")
+        x = x.lower()
+        table = x.maketrans("ёйъ", "еиь")
+        return x.translate(table).replace(" ", "")
 
     def check_bad_lang(self, *args: str) -> bool:
         """

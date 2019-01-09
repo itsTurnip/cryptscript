@@ -9,7 +9,6 @@ class Playfair(Table):
     """
     def __init__(self, key: str) -> str:
         key = self.replace(key)
-        print(key)
         if self.check_bad_lang(key): 
             print("Должны использоваться исключительно русские символы!")
             del self
@@ -83,7 +82,8 @@ class Playfair(Table):
         if self.check_bad_lang(text):
             print("Допускается использовать только русский алфавит!")
             return
-        if len(text) % 2 == 1: text += "ь"
+        if len(text) % 2 == 1:
+            text += "ь"
         ctext = ""
         while len(ctext) < len(text):
             ctext += self.crypt_b(text[len(ctext)] + text[len(ctext) + 1])
