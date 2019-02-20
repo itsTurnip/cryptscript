@@ -59,3 +59,8 @@ class Wheat(Table):
         while len(ctext) < len(text):
             ctext += self.crypt_b(text[len(ctext)] + text[len(ctext) + 1])
         return ctext
+
+    """Алиас для расшифрования текста"""
+    decrypt = crypt
+    """Алиас для расшифрования биграмм"""
+    decrypt_b = crypt_b
