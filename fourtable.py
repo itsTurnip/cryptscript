@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 from .table import Table
-=======
-from table import Table
->>>>>>> refs/remotes/origin/master
 
 
 class Four(Table):
