@@ -1,4 +1,6 @@
-class Table:
+from abc import abstractmethod, ABC
+
+class Table(ABC):
     """
     Общий класс для квадратных шифров.
     Некоторые особенности: 
@@ -9,7 +11,7 @@ class Table:
 
     alphabet = "абвгдежзиклмнопрстуфхцчшщыьэюя"
     """Алфавит открытого текста"""
-    @staticmethod
+    @staticmethod    
     def replace(x: str) -> str:
         """
         Функция замены измененных в алфавите символов
@@ -17,10 +19,10 @@ class Table:
         :param x: Строка, в которой заменяем символы
         :returns: Измененная строка.
         """
-        x = x.lower()
-        table = x.maketrans("ёйъ", "еиь")
-        return x.translate(table).replace(" ", "")
-
+        x = x.strip().lower()
+        table = x.maketrans("ёйъ", "еиь", "!()-[]{};:'\",<>./?@#$%^&*_~\n ")
+        return x.translate(table)
+    
     def check_bad_lang(self, *args: str) -> bool:
         """
         Функция проверки строк на отсутствие символов в алфавите
@@ -37,7 +39,7 @@ class Table:
     @staticmethod
     def edit_key(key: str) -> str:
         """
-        Изменяем ключи, исключая повторяющиеся символы
+        Изменяем ключ, исключая повторяющиеся символы
 
         :param key: Изменяемый ключ
         :returns: Измененный ключ
@@ -60,3 +62,56 @@ class Table:
             if sym not in alph:
                 alph += sym
         return alph
+    
+    def decrypt(self, ctext: str) -> str:
+        """
+        Функция расшифрования текста
+
+        :param ctext: расшифруемый текст
+        :returns: расшифрованный текст
+        """
+        text = ""
+        length = len(text)
+        while length < len(ctext):
+            text += self.decrypt_b(ctext[length:length+2])
+            length = len(text)
+        return text
+
+    def crypt(self, text: str) -> str:
+        """
+        Функция шифрования текста
+
+        :param text: шифруемый текст
+        :returns: зашифрованный текст
+        """
+        text = self.replace(text)
+        if self.check_bad_lang(text):
+            raise ValueError()
+        if len(text) % 2 == 1:
+            text += 'ь'
+        ctext = ""
+        length = len(ctext)
+        while length < len(text):
+            ctext += self.crypt_b(text[length:length + 2])
+            length = len(ctext)
+        return ctext
+
+    @abstractmethod
+    def crypt_b(self, bigr: str) -> str:
+        """
+        Абстрактный метод, реализуемый конкретными шифрами, для шифрования биграмм.
+
+        :param bigr: шифруемая биграмма
+        :returns: зашифрованная биграмма
+        """
+        pass
+
+    @abstractmethod
+    def decrypt_b(self, bigr: str) -> str:
+        """
+        Абстрактный метод, реализуемый конкретными шифрами, для расшифрования биграмм.
+
+        :param bigr: расшифруемая биграмма
+        :returns: расшифрованная биграмма
+        """
+        pass
