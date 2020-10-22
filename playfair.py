@@ -58,8 +58,7 @@ class Playfair(Table):
         else:
             # Иначе взаимозаменяем номера столбцов
             first_y, second_y = second_y, first_y
-        bigr = self.alph[first_x * 5 + first_y] + self.alph[second_x * 5 + second_y]
-        return bigr
+        return self.alph[first_x * 5 + first_y] + self.alph[second_x * 5 + second_y]
     
     def decrypt_b(self, bigr: str) -> str:
         """
@@ -83,17 +82,4 @@ class Playfair(Table):
         else:
             # Иначе взаимозаменяем номера столбцов
             first_y, second_y = second_y, first_y
-        bigr = self.alph[first_x * 5 + first_y] + self.alph[second_x * 5 + second_y]
-        return bigr
-
-    def decrypt(self, text: str) -> str:
-        """
-        Функция расшифрования текста
-
-        :param text: Зашифрованный текст
-        :returns: Расшифрованный текст
-        """
-        ctext = ""
-        while len(ctext) < len(text):
-            ctext += self.decrypt_b(text[len(ctext):len(ctext) + 2])
-        return ctext
+        return self.alph[first_x * 5 + first_y] + self.alph[second_x * 5 + second_y]
