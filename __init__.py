@@ -1,3 +1,4 @@
-from .wheat import *
-from .playfair import *
-from .fourtable import *
+from .wheat import Wheat
+from .playfair import Playfair
+from .fourtable import Four
+__all__ = ["Four", "Playfair", "Wheat"]
